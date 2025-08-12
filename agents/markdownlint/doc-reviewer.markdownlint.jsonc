@@ -1,0 +1,25 @@
+{
+  "default": true, // keep all built-ins
+  "MD013": {
+    "line_length": 120,
+    "tables": false
+  },
+  "MD043": {
+    "headings": [
+      "# Documentation Review Refactor Analysis",
+      "## 📊 REVIEW SUMMARY",
+      "## 📁 SCOPE OF CHANGES",
+      "## 🚨 DETAILED FINDINGS",
+      "### CRITICAL ISSUES (Content Lost/Broken - MUST FIX)",
+      "*",
+      "### ⚠️ WARNINGS (Meaning Changed - SHOULD FIX)",
+      "*",
+      "### 💡 SUGGESTIONS (Clarity Improvements - CONSIDER)",
+      "*",
+      "## 🔍 SEMANTIC INTEGRITY ANALYSIS",
+      "## 📋 QUALITY METRICS",
+      "## 🎯 ACTION ITEMS"
+    ]
+  },
+  "action-items-structure": true
+}

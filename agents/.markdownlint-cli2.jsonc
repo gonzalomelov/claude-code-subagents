@@ -1,0 +1,7 @@
+{
+  "config": {
+    "extends": "./markdownlint/doc-reviewer.markdownlint.jsonc"
+  },
+  "customRules": ["./markdownlint/rules/action-items-structure.js"],
+  "ignores": ["markdownlint/rules/**/*.js"]
+}
