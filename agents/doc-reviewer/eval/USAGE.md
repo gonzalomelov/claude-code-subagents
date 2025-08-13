@@ -2,41 +2,31 @@
 
 ## Current Setup
 
-The framework currently uses a **mock doc-reviewer** (`mock_doc_reviewer.py`) for testing. This allows you to:
-1. Test the evaluation framework itself
-2. Understand the expected behavior
-3. Run tests without needing Claude Code CLI
-
-## Switching to Real doc-reviewer
-
-To use with the actual doc-reviewer subagent, modify `test_semantic_preservation.py`:
-
-```python
-# Line 88-92, change from:
-mock_script = Path(__file__).parent / "mock_doc_reviewer.py"
-cmd = ["python3", str(mock_script)]
-
-# To:
-cmd = [
-    "claude",
-    "--print",  # Non-interactive mode to capture output
-    "Use doc-reviewer to review the staged documentation changes"
-]
-```
+The framework now uses the **real doc-reviewer** subagent via Claude Code CLI. The evaluation system:
+1. Creates temporary git repositories with staged changes
+2. Invokes the real doc-reviewer subagent via `claude --print`
+3. Parses the doc-reviewer output files from `tmp/doc-reviewer/`
+4. Evaluates semantic preservation detection accuracy
 
 ## Running Evaluations
 
-### With Mock (Current)
+### Prerequisites
+1. Ensure Claude Code CLI is installed and configured
+2. Ensure doc-reviewer subagent exists at `~/.claude/agents/doc-reviewer.md`
+3. Ensure doc-reviewer template and markdownlint config are installed in `~/.claude/agents/doc-reviewer/`
+
+### Running the Tests
 ```bash
-cd doc-reviewer/eval
+cd agents/doc-reviewer/eval
 python3 test_semantic_preservation.py
 ```
 
-### With Real doc-reviewer
-1. Ensure Claude Code CLI is installed and configured
-2. Ensure doc-reviewer subagent exists at `~/.claude/agents/doc-reviewer.md`
-3. Make the code change above
-4. Run the evaluation
+The framework will:
+- Load test cases from `test_cases.json`
+- Create temporary git repos with staged documentation changes
+- Invoke the real doc-reviewer subagent for each test case
+- Parse output files from `tmp/doc-reviewer/doc-reviewer-*.md`
+- Evaluate detection accuracy and generate metrics
 
 ## Interpreting Results
 
@@ -52,11 +42,11 @@ python3 test_semantic_preservation.py
 - **False Positive**: Incorrectly flagged as semantic loss
 - **False Negative**: Missed a real semantic loss
 
-### Current Performance
-With the mock doc-reviewer:
-- 100% accuracy on 4 test cases
-- Detects: column removal, link deletion, context loss
-- Correctly ignores: formatting-only changes
+### Detection Logic
+The evaluator considers only **CRITICAL ISSUES** as semantic loss:
+- Lines containing "CRITICAL ISSUES" or "CRITICAL" + "MUST FIX"
+- Warnings and suggestions are not counted as semantic loss
+- Each finding must start with "Finding #" to be counted
 
 ## Adding New Test Cases
 
@@ -77,62 +67,26 @@ With the mock doc-reviewer:
 }
 ```
 
-## Educational Path
-
-### Phase 1 (Current) ✅
-- Basic Python implementation
-- Mock doc-reviewer for testing
-- 4 test cases
-- Simple metrics
-
-### Phase 2 (Next Steps)
-- Integration with real doc-reviewer
-- Add 10+ more test cases
-- Test edge cases
-- Add confidence scoring
-
-### Phase 3 (Future)
-- Auto-generate test variations
-- Multi-model validation
-- Parallel execution
-- CI/CD integration
-
-### Phase 4 (Advanced)
-- Consider frameworks like EleutherAI harness
-- Distributed testing
-- Standardized benchmarks
-- Community contributions
-
-## Why This Approach?
-
-1. **Educational**: You understand every line of code
-2. **Practical**: Solves real problem (doc review quality)
-3. **Scalable**: Can grow as needs increase
-4. **Generic**: Tests semantic preservation, not patterns
-5. **Measurable**: Clear metrics for improvement
-
 ## Troubleshooting
 
-### Mock not detecting issues
-- Check the heuristics in `mock_doc_reviewer.py`
-- Ensure git diff format is correct
-- Verify the patterns match your test cases
+### Claude CLI not found
+- Ensure Claude Code CLI is installed: `npm install -g @anthropic/claude-code`
+- Verify it's in your PATH: `which claude`
+- Test basic functionality: `claude --version`
 
-### Low accuracy with real doc-reviewer
-- Review the doc-reviewer prompt/template
-- Check if it's using the correct severity levels
-- Ensure it's outputting in expected format
+### Doc-reviewer not found
+- Check if subagent exists: `ls ~/.claude/agents/doc-reviewer.md`
+- Ensure template exists: `ls ~/.claude/agents/doc-reviewer/output-template.md`
+- Verify markdownlint config: `ls ~/.claude/agents/doc-reviewer/markdownlint.jsonc`
+
+### Low accuracy with doc-reviewer
+- Review the doc-reviewer template for critical issue patterns
+- Check if severity mapping matches evaluator expectations
+- Ensure output format follows "Finding #" pattern
+- Debug with output files in `tmp/doc-reviewer/` directory
 
 ### Test cases failing to parse
-- Check git diff format in test_cases.json
+- Verify git diff format in test_cases.json
 - Ensure proper escaping of special characters
-- Verify JSON is valid
-
-## Next Steps
-
-1. ✅ Framework created and tested
-2. ✅ Mock doc-reviewer working
-3. ✅ 100% accuracy on initial test cases
-4. **TODO**: Integration with real doc-reviewer
-5. **TODO**: Expand test suite to 20+ cases
-6. **TODO**: Add to CI/CD pipeline
+- Validate JSON structure: `python3 -m json.tool test_cases.json`
+- Check temporary repo creation in debug output
