@@ -20,7 +20,7 @@ agents/
     ├── markdownlint.jsonc    # Validation configuration
     ├── rules/                # Custom validation rules
     ├── examples/             # Real-world usage examples
-    └── tests/                # Evaluation framework
+    └── eval/                # Evaluation framework
 ```
 
 **Current Agents:**
@@ -38,7 +38,7 @@ The doc-reviewer agent depends on:
 ### Running Evaluations
 ```bash
 # Run the semantic preservation evaluation framework
-cd agents/doc-reviewer/tests
+cd agents/doc-reviewer/eval
 python3 test_semantic_preservation.py
 ```
 
@@ -66,9 +66,9 @@ git add .  # Stage changes first
 
 ## Evaluation Framework
 
-Each agent includes a comprehensive evaluation system in its `tests/` directory:
-- **Location**: `agents/{agent-name}/tests/`
-- **Purpose**: Tests semantic preservation detection accuracy
+Each agent includes a comprehensive evaluation system in its `eval/` directory:
+- **Location**: `agents/{agent-name}/eval/`
+- **Purpose**: Evaluates semantic preservation detection accuracy
 - **Metrics**: Precision, recall, F1-score for semantic loss detection
 - **Test Cases**: JSON-defined scenarios with expected outcomes
 - **Current Status**: Uses real Claude Code CLI (not mock) for testing
@@ -92,7 +92,7 @@ Each agent includes a comprehensive evaluation system in its `tests/` directory:
 - **Template** (`template.md`): Structured output format for consistent responses
 - **Validation** (`markdownlint.jsonc` + `rules/`): Ensures output quality and format compliance
 - **Examples** (`examples/`): Real-world usage demonstrations following the template
-- **Tests** (`tests/`): Evaluation framework for measuring agent effectiveness
+- **Evaluator** (`eval/`): Evaluation framework for measuring agent effectiveness
 - **Documentation** (`README.md`): Agent-specific usage guide and architecture
 
 ### Benefits of This Structure
@@ -107,7 +107,7 @@ Each agent includes a comprehensive evaluation system in its `tests/` directory:
 ### Working with Agents
 1. **Stage changes first**: Use `git add` before invoking doc-reviewer agent
 2. **Follow agent structure**: New agents should follow the established directory pattern
-3. **Use evaluation frameworks**: Test agent improvements with the tests/ directory
+3. **Use evaluation frameworks**: Test agent improvements with the eval/ directory
 4. **Validate outputs**: Ensure generated files pass markdownlint validation
 5. **Document thoroughly**: Each agent should have clear README and usage examples
 
@@ -118,4 +118,4 @@ Each agent includes a comprehensive evaluation system in its `tests/` directory:
 4. Include template.md for consistent output formatting
 5. Set up markdownlint.jsonc and custom rules for validation
 6. Add real-world examples in examples/ directory
-7. Create evaluation framework in tests/ directory
+7. Create evaluation framework in eval/ directory
