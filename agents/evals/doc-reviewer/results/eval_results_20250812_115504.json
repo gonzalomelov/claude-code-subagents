@@ -1,0 +1,93 @@
+{
+  "metrics": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "confusion_matrix": {
+      "true_positive": 3,
+      "true_negative": 1,
+      "false_positive": 0,
+      "false_negative": 0
+    }
+  },
+  "test_results": [
+    {
+      "test_id": "semantic_001",
+      "description": "Critical: Table column with lessons learned is completely removed",
+      "expected_semantic_loss": true,
+      "expected_severity": "critical",
+      "detected_semantic_loss": true,
+      "findings": {
+        "critical": [
+          "Finding #C1: Loss of Lessons Learned Column"
+        ],
+        "warnings": [],
+        "suggestions": [
+          "Finding #S1: Consider Preserving Lessons Learned Data Structure"
+        ]
+      },
+      "success": true,
+      "timestamp": "2025-08-12T11:47:57.301707",
+      "classification": "true_positive"
+    },
+    {
+      "test_id": "semantic_002",
+      "description": "Critical: Multiple resource links replaced with single redirect",
+      "expected_semantic_loss": true,
+      "expected_severity": "critical",
+      "detected_semantic_loss": true,
+      "findings": {
+        "critical": [
+          "Finding #C1: Complete Loss of Learning Resources and Documentation"
+        ],
+        "warnings": [],
+        "suggestions": []
+      },
+      "success": true,
+      "timestamp": "2025-08-12T11:49:44.106716",
+      "classification": "true_positive"
+    },
+    {
+      "test_id": "semantic_003",
+      "description": "Critical: Important context about technology evaluation challenges removed",
+      "expected_semantic_loss": true,
+      "expected_severity": "critical",
+      "detected_semantic_loss": true,
+      "findings": {
+        "critical": [
+          "Finding #C1: Important Context and Technical Decision Information Removed"
+        ],
+        "warnings": [],
+        "suggestions": []
+      },
+      "success": true,
+      "timestamp": "2025-08-12T11:53:13.930183",
+      "classification": "true_positive"
+    },
+    {
+      "test_id": "semantic_004",
+      "description": "Success: Content reorganized but all information preserved",
+      "expected_semantic_loss": false,
+      "expected_severity": "none",
+      "detected_semantic_loss": false,
+      "findings": {
+        "critical": [],
+        "warnings": [
+          "Finding #W1: Timeline Specificity Reduction"
+        ],
+        "suggestions": [
+          "Finding #S1: Vague Documentation Reference",
+          "Finding #S2: Missing Project Context"
+        ]
+      },
+      "success": true,
+      "timestamp": "2025-08-12T11:55:04.031953",
+      "classification": "true_negative"
+    }
+  ],
+  "timestamp": "20250812_115504"
+}

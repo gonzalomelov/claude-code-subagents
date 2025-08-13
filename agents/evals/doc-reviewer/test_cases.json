@@ -1,0 +1,78 @@
+[
+  {
+    "test_id": "semantic_001",
+    "description": "Critical: Table column with lessons learned is completely removed",
+    "git_diff": "diff --git a/projects/software-project.md b/projects/software-project.md\nindex 6321f19..7b2728c 100644\n--- a/projects/software-project.md\n+++ b/projects/software-project.md\n@@ -44,8 +44,8 @@\n ## Decision Log\n-| Date | Decision | Context | Expected Outcome | Actual Outcome | Lessons |\n-|------|----------|---------|------------------|----------------|---------|\n-| 7/2025 | Switch from mobile to web platform | Mobile adoption slow, web opportunity | Better user engagement | [Track] | [Track] |\n-| 7/24/2025 | Release MVP before major pivot | Developed for 2 months without user feedback; new direction needs validation | Get real user feedback before switching approach | [Track] | Key insight: validate with users before major changes |\n+| Date | Decision | Context | Expected Outcome | Actual Outcome |\n+|------|----------|---------|------------------|----------------|\n+| 7/2025 | Switch from mobile to web platform | Mobile adoption slow, web opportunity | Better user engagement | [Track] |\n+| 7/24/2025 | Release MVP before major pivot | Developed for 2 months without user feedback; new direction needs validation | Get real user feedback before switching approach | [Track] |",
+    "semantic_check": {
+      "original_capabilities": [
+        "User can learn from past decisions",
+        "User can see lessons learned from each decision",
+        "User can understand what worked and what didn't"
+      ],
+      "modified_capabilities": [
+        "User can see decisions were made",
+        "User cannot learn from past experiences"
+      ],
+      "semantic_loss": true,
+      "severity": "critical"
+    }
+  },
+  {
+    "test_id": "semantic_002",
+    "description": "Critical: Multiple resource links replaced with single redirect",
+    "git_diff": "diff --git a/inbox.md b/inbox.md\nindex adbf1bc..4974b7c 100644\n--- a/inbox.md\n+++ b/inbox.md\n@@ -45,19 +45,7 @@\n   - Documentation: https://docs.example.com/guides/api-integration\n \n #### **[PRIORITY] Learning Resources**\n-- [ ] **Review Tech Conference - API Integration Workshop**\n-  - Links:\n-    - https://example.com/events/tech-conference/api-workshop\n-    - https://docs.example.com/workshop-materials\n-    - https://tutorials.example.com/api-integration-guide\n-  - Video Resources:\n-    - Workshop recording: https://videos.example.com/workshop-123\n-    - Introduction: https://www.youtube.com/watch?v=example1\n-    - Advanced Topics: https://www.youtube.com/watch?v=example2\n-    - Best Practices: https://www.youtube.com/watch?v=example3\n-    - Error Handling: https://www.youtube.com/watch?v=example4\n-  - Consider: Mobile integration, cloud deployment, monitoring setup\n-  - Additional resources: https://docs.example.com/best-practices\n+- [ ] **Review Tech Conference - API Integration Workshop** → Moved to [projects/software-project.md](projects/software-project.md)",
+    "semantic_check": {
+      "original_capabilities": [
+        "User can directly access workshop materials",
+        "User can watch specific tutorial videos",
+        "User can access additional documentation",
+        "User can understand different technical topics covered"
+      ],
+      "modified_capabilities": [
+        "User knows information exists elsewhere",
+        "User must navigate to different file to find resources"
+      ],
+      "semantic_loss": true,
+      "severity": "critical"
+    }
+  },
+  {
+    "test_id": "semantic_003",
+    "description": "Critical: Important context about technology evaluation challenges removed",
+    "git_diff": "diff --git a/decisions.md b/decisions.md\nindex 6409865..41d643f 100644\n--- a/decisions.md\n+++ b/decisions.md\n@@ -1,5 +1,5 @@\n | Date | Decision | Context | Expected Outcome | Actual Outcome | Lessons |\n |------|----------|---------|------------------|----------------|---------|\n-| 5/13/2025 | Adopt new technology stack | Evaluating current tools vs emerging technologies; complex decision requiring careful analysis of trade-offs | Better performance and maintainability | Migrated to new stack (project-alpha) | Good decision but technology evaluation process remains challenging |\n+| 5/13/2025 | Adopt new technology stack | Evaluating current tools vs emerging technologies | Better performance and maintainability | Migrated to new stack (project-alpha) | Good decision |",
+    "semantic_check": {
+      "original_capabilities": [
+        "User understands technical decision process",
+        "User sees awareness about technology evaluation challenges", 
+        "User has context about decision complexity"
+      ],
+      "modified_capabilities": [
+        "User sees factual decision only",
+        "Technical evaluation context is lost"
+      ],
+      "semantic_loss": true,
+      "severity": "critical"
+    }
+  },
+  {
+    "test_id": "semantic_004",
+    "description": "Success: Content reorganized but all information preserved",
+    "git_diff": "diff --git a/active.md b/active.md\nindex 6409865..41d643f 100644\n--- a/active.md\n+++ b/active.md\n@@ -1,10 +1,12 @@\n-# Active Projects\n-\n-## project-alpha\n-- Goal: Advanced automation platform\n-- Status: Development phase\n+# Active Projects\n+\n+## Primary Focus\n+\n+### project-alpha\n+- **Goal:** Advanced automation platform\n+- **Status:** Development phase\n+- **Timeline:** May-Nov 2025\n \n-*Note: This project is the main focus until November 2025*\n+Further details available in project documentation.",
+    "semantic_check": {
+      "original_capabilities": [
+        "User knows the project name",
+        "User knows the goal",
+        "User knows the status",
+        "User knows the timeline"
+      ],
+      "modified_capabilities": [
+        "User knows the project name",
+        "User knows the goal",
+        "User knows the status",
+        "User knows the timeline"
+      ],
+      "semantic_loss": false,
+      "severity": "none"
+    }
+  }
+]
