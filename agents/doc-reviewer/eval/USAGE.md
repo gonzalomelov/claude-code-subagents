@@ -90,3 +90,14 @@ The evaluator considers only **CRITICAL ISSUES** as semantic loss:
 - Ensure proper escaping of special characters
 - Validate JSON structure: `python3 -m json.tool test_cases.json`
 - Check temporary repo creation in debug output
+
+## Next Steps
+
+1. ✅ Framework created and tested
+2. ✅ Mock doc-reviewer working initially
+3. ✅ Integration with real doc-reviewer subagent
+4. ✅ Temporary git repository creation
+5. ✅ Claude Code CLI invocation and output parsing
+6. **TODO**: Expand test suite to 20+ cases
+7. **TODO**: Add confidence scoring and severity mapping
+8. **TODO**: Add to CI/CD pipeline

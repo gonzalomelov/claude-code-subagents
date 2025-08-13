@@ -129,25 +129,43 @@ Results are saved in `results/` with:
 - Human-readable summary with metrics
 - Timestamp for tracking improvements over time
 
-## Future Enhancements
+## Educational Path
 
-### Phase 1 (Current)
-- Basic semantic detection
-- Manual test cases
-- Simple subprocess runner
-- Binary pass/fail scoring
+### Phase 1 ✅
+- Basic Python implementation
+- Mock doc-reviewer for initial testing
+- 4 test cases with simple metrics
 
-### Phase 2 (Weeks 3-4)
+### Phase 2 (Current) ✅
+- Integration with real doc-reviewer subagent
+- Temporary git repository creation
+- Real Claude Code CLI invocation
+- Output file parsing from `tmp/doc-reviewer/`
+
+### Phase 3 (Next Steps)
+- Add 10+ more test cases
+- Test edge cases and corner scenarios
+- Add confidence scoring and severity mapping
+
+### Phase 4 (Future)
 - Auto-generate test variations
 - Multi-model validation
-- Confidence scoring
-- Semantic similarity metrics
+- Parallel execution
+- CI/CD integration
 
-### Phase 3 (Month 2+)
-- Consider frameworks when we have 50+ test cases
-- Parallel execution for speed
-- Integration with CI/CD
-- Standardized reporting formats
+### Phase 5 (Advanced)
+- Consider frameworks like EleutherAI harness
+- Distributed testing
+- Standardized benchmarks
+- Community contributions
+
+## Why This Approach?
+
+1. **Educational**: You understand every line of code
+2. **Practical**: Solves real problem (doc review quality)
+3. **Scalable**: Can grow as needs increase
+4. **Generic**: Tests semantic preservation, not patterns
+5. **Measurable**: Clear metrics for improvement
 
 ## Educational Value
 
