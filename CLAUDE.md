@@ -8,14 +8,24 @@ This repository contains specialized subagents for Claude Code. The primary agen
 
 ## Architecture
 
-### Agent Structure
-- `agents/` - Contains agent definition files and supporting resources
-  - `doc-reviewer.md` - Main agent definition with instructions and tools
-  - `doc-fixer.md` - Companion agent for implementing doc-reviewer fixes
-  - `templates/` - Output templates for standardized agent responses
-  - `markdownlint/` - Linting configuration and custom rules
-  - `examples/` - Real-world usage examples
-  - `evals/` - Evaluation framework for testing agent performance
+### Agent Structure (Agent-Centric Organization)
+Each agent is organized as a self-contained module:
+
+```
+agents/
+├── {agent-name}.md           # Agent definition at root for visibility
+└── {agent-name}/             # All agent resources grouped together
+    ├── README.md             # Agent documentation
+    ├── template.md           # Output template
+    ├── markdownlint.jsonc    # Validation configuration
+    ├── rules/                # Custom validation rules
+    ├── examples/             # Real-world usage examples
+    └── tests/                # Evaluation framework
+```
+
+**Current Agents:**
+- `doc-reviewer/` - Documentation change review specialist
+- `docs/` - Static documentation (markdownlint rules, etc.)
 
 ### Agent Dependencies
 The doc-reviewer agent depends on:
@@ -28,7 +38,7 @@ The doc-reviewer agent depends on:
 ### Running Evaluations
 ```bash
 # Run the semantic preservation evaluation framework
-cd agents/evals/doc-reviewer
+cd agents/doc-reviewer/tests
 python3 test_semantic_preservation.py
 ```
 
@@ -54,45 +64,58 @@ git add .  # Stage changes first
 4. Validates output with markdownlint using custom configuration
 5. Iterates until validation passes
 
-### Doc-Fixer Agent
-Designed to work with doc-reviewer output files to implement fixes identified during review.
-
 ## Evaluation Framework
 
-The repository includes a comprehensive evaluation system:
-- **Location**: `agents/evals/doc-reviewer/`
+Each agent includes a comprehensive evaluation system in its `tests/` directory:
+- **Location**: `agents/{agent-name}/tests/`
 - **Purpose**: Tests semantic preservation detection accuracy
 - **Metrics**: Precision, recall, F1-score for semantic loss detection
 - **Test Cases**: JSON-defined scenarios with expected outcomes
 - **Current Status**: Uses real Claude Code CLI (not mock) for testing
 
-### Key Evaluation Files
+### Key Evaluation Files (per agent)
 - `test_semantic_preservation.py` - Main evaluation runner
 - `test_cases.json` - Test scenarios with semantic checks
 - `results/` - Timestamped evaluation outputs
+- `README.md` and `USAGE.md` - Framework documentation
 
-## File Organization
+## File Organization Principles
 
-### Agent Definitions
-- Follow Claude Code subagent YAML frontmatter format
-- Include `name`, `description`, `tools`, and `model` fields
-- Main content provides detailed instructions for agent behavior
+### Agent-Centric Structure
+- **Self-contained**: Each agent directory contains everything related to that agent
+- **Discoverable**: Agent definitions at root for visibility, resources nested in agent folders
+- **Predictable**: Every agent follows the same organizational pattern
+- **Scalable**: Easy to add new agents without restructuring existing ones
 
-### Templates
-- Structured output templates ensure consistent agent responses
-- Include severity classifications (Critical/Warning/Suggestion)
-- Provide actionable findings with specific line numbers and fixes
+### Agent Components
+- **Definition** (`{agent}.md`): Claude Code subagent with YAML frontmatter and instructions
+- **Template** (`template.md`): Structured output format for consistent responses
+- **Validation** (`markdownlint.jsonc` + `rules/`): Ensures output quality and format compliance
+- **Examples** (`examples/`): Real-world usage demonstrations following the template
+- **Tests** (`tests/`): Evaluation framework for measuring agent effectiveness
+- **Documentation** (`README.md`): Agent-specific usage guide and architecture
 
-### Configuration
-- Custom markdownlint rules enforce output format standards
-- JSON configuration files define allowed heading structures
-- Custom JavaScript rules for specialized validation
+### Benefits of This Structure
+1. **Locality**: All agent-related files are co-located
+2. **Independence**: Each agent is completely self-contained
+3. **Clarity**: Easy to understand what belongs to which agent
+4. **Maintainability**: Changes to one agent don't affect others
+5. **Discoverability**: IDE search works intuitively (e.g., "doc-reviewer template")
 
 ## Development Practices
 
-When working with agents:
-1. Stage documentation changes with `git add` before testing
-2. Use the evaluation framework to validate agent improvements
-3. Follow the template structure exactly for consistent outputs
-4. Ensure markdownlint validation passes for all generated files
-5. Test semantic preservation detection with representative scenarios
+### Working with Agents
+1. **Stage changes first**: Use `git add` before invoking doc-reviewer agent
+2. **Follow agent structure**: New agents should follow the established directory pattern
+3. **Use evaluation frameworks**: Test agent improvements with the tests/ directory
+4. **Validate outputs**: Ensure generated files pass markdownlint validation
+5. **Document thoroughly**: Each agent should have clear README and usage examples
+
+### Adding New Agents
+1. Create agent definition at `agents/{agent-name}.md`
+2. Create agent directory `agents/{agent-name}/` with standard structure
+3. Add README.md explaining the agent's purpose and capabilities
+4. Include template.md for consistent output formatting
+5. Set up markdownlint.jsonc and custom rules for validation
+6. Add real-world examples in examples/ directory
+7. Create evaluation framework in tests/ directory
