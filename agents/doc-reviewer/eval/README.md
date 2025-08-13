@@ -129,7 +129,7 @@ Results are saved in `results/` with:
 - Human-readable summary with metrics
 - Timestamp for tracking improvements over time
 
-## Educational Path
+## Development Roadmap
 
 ### Phase 1 ✅
 - Basic Python implementation
@@ -159,21 +159,21 @@ Results are saved in `results/` with:
 - Standardized benchmarks
 - Community contributions
 
-## Why This Approach?
+## Design Philosophy
 
-1. **Educational**: You understand every line of code
+1. **Transparent**: You understand every line of code
 2. **Practical**: Solves real problem (doc review quality)
 3. **Scalable**: Can grow as needs increase
 4. **Generic**: Tests semantic preservation, not patterns
 5. **Measurable**: Clear metrics for improvement
 
-## Educational Value
+## Framework Benefits
 
-This minimal implementation teaches:
-1. What problems evaluation frameworks solve
-2. How to measure semantic preservation
-3. The complexity of judging documentation quality
-4. Why we might eventually need frameworks
+This minimal implementation provides:
+1. Understanding of evaluation framework fundamentals
+2. Methods for measuring semantic preservation
+3. Insights into documentation quality assessment
+4. Foundation for future framework adoption
 
 ## Adding New Test Cases
 
