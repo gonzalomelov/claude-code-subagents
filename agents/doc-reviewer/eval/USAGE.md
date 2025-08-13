@@ -28,7 +28,7 @@ cmd = [
 
 ### With Mock (Current)
 ```bash
-cd evals/doc-reviewer
+cd doc-reviewer/eval
 python3 test_semantic_preservation.py
 ```
 

@@ -15,7 +15,7 @@ Starting without heavy frameworks allows us to:
 ## Structure
 
 ```
-evals/doc-reviewer/
+doc-reviewer/eval/
 ├── test_semantic_preservation.py   # Main evaluation runner
 ├── test_cases.json                 # Test cases with semantic checks
 ├── results/                        # Evaluation results
@@ -102,7 +102,7 @@ sequenceDiagram
 ## Running the Evaluation
 
 ```bash
-cd evals/doc-reviewer
+cd doc-reviewer/eval
 python3 test_semantic_preservation.py
 ```
 

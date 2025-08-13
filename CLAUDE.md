@@ -29,8 +29,8 @@ agents/
 
 ### Agent Dependencies
 The doc-reviewer agent depends on:
-- Template file at `~/.claude/agents/templates/doc-reviewer.md`
-- Markdownlint config at `~/.claude/agents/markdownlint/doc-reviewer.markdownlint.jsonc`
+- Template file at `~/.claude/agents/doc-reviewer/output-template.md`
+- Markdownlint config at `~/.claude/agents/doc-reviewer/markdownlint.jsonc`
 - These files need to be installed in the user's Claude directory structure
 
 ## Common Commands
@@ -45,7 +45,7 @@ python3 test_semantic_preservation.py
 ### Markdown Linting
 ```bash
 # Lint doc-reviewer output files
-markdownlint-cli2 "tmp/doc-reviewer/doc-reviewer-*.md" --config "~/.claude/agents/markdownlint/doc-reviewer.markdownlint.jsonc"
+markdownlint-cli2 "tmp/doc-reviewer/doc-reviewer-*.md" --config "~/.claude/agents/doc-reviewer/markdownlint.jsonc"
 ```
 
 ### Git Operations

@@ -28,6 +28,6 @@ The agent expects staged git changes (`git diff --staged`) and outputs structure
 
 ## Dependencies
 
-- Access to `~/.claude/agents/templates/doc-reviewer.md` (template file)
-- Access to `~/.claude/agents/markdownlint/doc-reviewer.markdownlint.jsonc` (validation config)
+- Access to `~/.claude/agents/doc-reviewer/output-template.md` (template file)
+- Access to `~/.claude/agents/doc-reviewer/markdownlint.jsonc` (validation config)
 - markdownlint-cli2 for output validation
