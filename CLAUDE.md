@@ -39,8 +39,8 @@ The doc-reviewer agent depends on:
 
 ### Running Evaluations
 ```bash
-# Run the semantic preservation evaluation framework
-cd agents/doc-reviewer/eval
+# Run agent evaluation framework (example: doc-reviewer)
+cd agents/{agent-name}/eval
 python3 eval.py
 ```
 
@@ -70,14 +70,14 @@ git add .  # Stage changes first
 
 Each agent includes a comprehensive evaluation system in its `eval/` directory:
 - **Location**: `agents/{agent-name}/eval/`
-- **Purpose**: Evaluates semantic preservation detection accuracy
-- **Metrics**: Precision, recall, F1-score for semantic loss detection
-- **Test Cases**: JSON-defined scenarios with expected outcomes
+- **Purpose**: Evaluates agent effectiveness (specific metrics depend on agent functionality)
+- **Implementation**: Agent-specific evaluation logic and test scenarios
+- **Test Cases**: JSON-defined scenarios with expected outcomes for the agent's domain
 - **Current Status**: Uses real Claude Code CLI (not mock) for testing
 
 ### Key Evaluation Files (per agent)
 - `eval.py` - Main evaluation runner
-- `test-cases.json` - Test scenarios with semantic checks
+- `test-cases.json` - Test scenarios with agent-specific validation criteria
 - `results/` - Timestamped evaluation outputs
 - `README.md` and `USAGE.md` - Framework documentation
 
