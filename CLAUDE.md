@@ -25,6 +25,8 @@ agents/
 
 **Current Agents:**
 - `doc-reviewer/` - Documentation change review specialist
+
+**Supporting Documentation:**
 - `docs/` - Static documentation (markdownlint rules, etc.)
 
 ### Agent Dependencies
