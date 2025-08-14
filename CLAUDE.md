@@ -41,7 +41,7 @@ The doc-reviewer agent depends on:
 ```bash
 # Run the semantic preservation evaluation framework
 cd agents/doc-reviewer/eval
-python3 test_semantic_preservation.py
+python3 eval.py
 ```
 
 ### Markdown Linting
@@ -76,7 +76,7 @@ Each agent includes a comprehensive evaluation system in its `eval/` directory:
 - **Current Status**: Uses real Claude Code CLI (not mock) for testing
 
 ### Key Evaluation Files (per agent)
-- `test_semantic_preservation.py` - Main evaluation runner
+- `eval.py` - Main evaluation runner
 - `test_cases.json` - Test scenarios with semantic checks
 - `results/` - Timestamped evaluation outputs
 - `README.md` and `USAGE.md` - Framework documentation

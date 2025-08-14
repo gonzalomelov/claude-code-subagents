@@ -18,7 +18,7 @@ The framework now uses the **real doc-reviewer** subagent via Claude Code CLI. T
 ### Running the Tests
 ```bash
 cd agents/doc-reviewer/eval
-python3 test_semantic_preservation.py
+python3 eval.py
 ```
 
 The framework will:

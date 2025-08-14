@@ -16,7 +16,7 @@ Starting without heavy frameworks allows us to:
 
 ```
 doc-reviewer/eval/
-├── test_semantic_preservation.py   # Main evaluation runner
+├── eval.py                         # Main evaluation runner
 ├── test_cases.json                 # Test cases with semantic checks
 ├── results/                        # Evaluation results
 └── README.md                       # This file
@@ -62,7 +62,7 @@ Each test case contains:
 ```mermaid
 sequenceDiagram
     participant TC as test_cases.json
-    participant Runner as test_semantic_preservation.py
+    participant Runner as eval.py
     participant Temp as Temp Git Repo
     participant Mock as mock_doc_reviewer.py
     participant Results as results/
@@ -103,7 +103,7 @@ sequenceDiagram
 
 ```bash
 cd doc-reviewer/eval
-python3 test_semantic_preservation.py
+python3 eval.py
 ```
 
 ## Metrics
