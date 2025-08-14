@@ -77,7 +77,7 @@ Each agent includes a comprehensive evaluation system in its `eval/` directory:
 
 ### Key Evaluation Files (per agent)
 - `eval.py` - Main evaluation runner
-- `test_cases.json` - Test scenarios with semantic checks
+- `test-cases.json` - Test scenarios with semantic checks
 - `results/` - Timestamped evaluation outputs
 - `README.md` and `USAGE.md` - Framework documentation
 

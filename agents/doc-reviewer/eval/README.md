@@ -17,7 +17,7 @@ Starting without heavy frameworks allows us to:
 ```
 doc-reviewer/eval/
 ├── eval.py                         # Main evaluation runner
-├── test_cases.json                 # Test cases with semantic checks
+├── test-cases.json                 # Test cases with semantic checks
 ├── results/                        # Evaluation results
 └── README.md                       # This file
 ```
@@ -61,7 +61,7 @@ Each test case contains:
 
 ```mermaid
 sequenceDiagram
-    participant TC as test_cases.json
+    participant TC as test-cases.json
     participant Runner as eval.py
     participant Temp as Temp Git Repo
     participant Mock as mock_doc_reviewer.py
@@ -180,7 +180,7 @@ This minimal implementation provides:
 1. Identify a semantic preservation scenario
 2. Create a git diff that demonstrates it
 3. List what capabilities are lost/preserved
-4. Add to `test_cases.json`
+4. Add to `test-cases.json`
 5. Run evaluation to verify
 
 ## Dependencies

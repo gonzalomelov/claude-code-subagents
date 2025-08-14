@@ -22,7 +22,7 @@ python3 eval.py
 ```
 
 The framework will:
-- Load test cases from `test_cases.json`
+- Load test cases from `test-cases.json`
 - Create temporary git repos with staged documentation changes
 - Invoke the real doc-reviewer subagent for each test case
 - Parse output files from `tmp/doc-reviewer/doc-reviewer-*.md`
@@ -52,7 +52,7 @@ The evaluator considers only **CRITICAL ISSUES** as semantic loss:
 
 1. Identify a semantic preservation scenario
 2. Create a git diff showing the change
-3. Add to `test_cases.json`:
+3. Add to `test-cases.json`:
 ```json
 {
   "test_id": "semantic_005",
@@ -86,9 +86,9 @@ The evaluator considers only **CRITICAL ISSUES** as semantic loss:
 - Debug with output files in `tmp/doc-reviewer/` directory
 
 ### Test cases failing to parse
-- Verify git diff format in test_cases.json
+- Verify git diff format in test-cases.json
 - Ensure proper escaping of special characters
-- Validate JSON structure: `python3 -m json.tool test_cases.json`
+- Validate JSON structure: `python3 -m json.tool test-cases.json`
 - Check temporary repo creation in debug output
 
 ## Next Steps

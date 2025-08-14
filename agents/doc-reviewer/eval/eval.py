@@ -15,7 +15,7 @@ import tempfile
 import re
 
 class SemanticPreservationEvaluator:
-    def __init__(self, test_cases_file: str = "test_cases.json"):
+    def __init__(self, test_cases_file: str = "test-cases.json"):
         self.test_cases_file = test_cases_file
         self.results_dir = Path("results")
         self.results_dir.mkdir(exist_ok=True)
@@ -328,8 +328,8 @@ def main():
     evaluator = SemanticPreservationEvaluator()
     
     # Check if test cases exist
-    if not Path("test_cases.json").exists():
-        print("Error: test_cases.json not found. Creating sample test cases...")
+    if not Path("test-cases.json").exists():
+        print("Error: test-cases.json not found. Creating sample test cases...")
         # Create sample test cases (we'll do this next)
         return 1
     
