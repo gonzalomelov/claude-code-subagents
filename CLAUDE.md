@@ -16,7 +16,7 @@ agents/
 ├── {agent-name}.md           # Agent definition at root for visibility
 └── {agent-name}/             # All agent resources grouped together
     ├── README.md             # Agent documentation
-    ├── template.md           # Output template
+    ├── output-template.md    # Output template
     ├── markdownlint.jsonc    # Validation configuration
     ├── rules/                # Custom validation rules
     ├── examples/             # Real-world usage examples
@@ -91,7 +91,7 @@ Each agent includes a comprehensive evaluation system in its `eval/` directory:
 
 ### Agent Components
 - **Definition** (`{agent}.md`): Claude Code subagent with YAML frontmatter and instructions
-- **Template** (`template.md`): Structured output format for consistent responses
+- **Template** (`output-template.md`): Structured output format for consistent responses
 - **Validation** (`markdownlint.jsonc` + `rules/`): Ensures output quality and format compliance
 - **Examples** (`examples/`): Real-world usage demonstrations following the template
 - **Evaluator** (`eval/`): Evaluation framework for measuring agent effectiveness
@@ -117,7 +117,7 @@ Each agent includes a comprehensive evaluation system in its `eval/` directory:
 1. Create agent definition at `agents/{agent-name}.md`
 2. Create agent directory `agents/{agent-name}/` with standard structure
 3. Add README.md explaining the agent's purpose and capabilities
-4. Include template.md for consistent output formatting
+4. Include output-template.md for consistent output formatting
 5. Set up markdownlint.jsonc and custom rules for validation
 6. Add real-world examples in examples/ directory
 7. Create evaluation framework in eval/ directory
