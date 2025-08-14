@@ -64,7 +64,7 @@ sequenceDiagram
     participant TC as test-cases.json
     participant Runner as eval.py
     participant Temp as Temp Git Repo
-    participant Mock as mock_doc_reviewer.py
+    participant Claude as Claude Code CLI
     participant Results as results/
 
     Runner->>TC: Load test cases
@@ -77,14 +77,14 @@ sequenceDiagram
         Runner->>Temp: Create original file & commit
         Runner->>Temp: Apply changes & stage
         
-        Runner->>Mock: Execute with cwd=temp_repo
-        activate Mock
-        Mock->>Temp: git diff --cached
-        Temp-->>Mock: Return staged changes
-        Mock->>Mock: Analyze for semantic loss
-        Mock->>Mock: Generate findings report
-        Mock-->>Runner: Return analysis output
-        deactivate Mock
+        Runner->>Claude: Execute doc-reviewer with cwd=temp_repo
+        activate Claude
+        Claude->>Temp: git diff --cached
+        Temp-->>Claude: Return staged changes
+        Claude->>Claude: Analyze for semantic loss
+        Claude->>Claude: Generate findings report
+        Claude-->>Runner: Return analysis output
+        deactivate Claude
         
         Runner->>Runner: Extract findings from output
         Runner->>Runner: Compare with expected semantic loss
@@ -133,7 +133,6 @@ Results are saved in `results/` with:
 
 ### Phase 1 ✅
 - Basic Python implementation
-- Mock doc-reviewer for initial testing
 - 4 test cases with simple metrics
 
 ### Phase 2 (Current) ✅

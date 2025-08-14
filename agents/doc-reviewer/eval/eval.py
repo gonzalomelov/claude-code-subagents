@@ -82,11 +82,7 @@ class SemanticPreservationEvaluator:
     def run_doc_reviewer(self, repo_path: str) -> Optional[str]:
         """Run the doc-reviewer subagent and capture its output"""
         try:
-            # For now, use mock doc-reviewer for testing
-            # mock_script = Path(__file__).parent / "mock_doc_reviewer.py"
-            # cmd = ["python3", str(mock_script)]
-            
-            # In production, replace with actual Claude Code command
+            # Use real Claude Code CLI with doc-reviewer subagent
             cmd = [
                 "claude",
                 "--print",

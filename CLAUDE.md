@@ -73,7 +73,7 @@ Each agent includes a comprehensive evaluation system in its `eval/` directory:
 - **Purpose**: Evaluates agent effectiveness (specific metrics depend on agent functionality)
 - **Implementation**: Agent-specific evaluation logic and test scenarios
 - **Test Cases**: JSON-defined scenarios with expected outcomes for the agent's domain
-- **Current Status**: Uses real Claude Code CLI (not mock) for testing
+- **Current Status**: Uses real Claude Code CLI for testing
 
 ### Key Evaluation Files (per agent)
 - `eval.py` - Main evaluation runner
