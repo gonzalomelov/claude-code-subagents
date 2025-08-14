@@ -278,10 +278,10 @@ class SemanticPreservationEvaluator:
     
     def save_results(self, results: List[Dict], metrics: Dict):
         """Save evaluation results to file"""
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
         
         # Save detailed results
-        results_file = self.results_dir / f"eval_results_{timestamp}.json"
+        results_file = self.results_dir / f"eval-results-{timestamp}.json"
         with open(results_file, 'w') as f:
             json.dump({
                 'metrics': metrics,
@@ -290,7 +290,7 @@ class SemanticPreservationEvaluator:
             }, f, indent=2)
         
         # Save summary
-        summary_file = self.results_dir / f"eval_summary_{timestamp}.txt"
+        summary_file = self.results_dir / f"eval-summary-{timestamp}.txt"
         with open(summary_file, 'w') as f:
             f.write("="*50 + "\n")
             f.write("SEMANTIC PRESERVATION EVALUATION RESULTS\n")
