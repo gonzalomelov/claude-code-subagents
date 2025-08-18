@@ -1,0 +1,19 @@
+{
+  "default": true, // keep all built-ins
+  "MD013": {
+    "line_length": 120,
+    "tables": false
+  },
+  "MD043": {
+    "headings": [
+      "# Documentation PR Comparison",
+      "## Executive Summary",
+      "## Quick Comparison",
+      "## PR Analysis",
+      "*",
+      "## Recommendation",
+      "## Next Steps",
+      "## Notes"
+    ]
+  }
+}
