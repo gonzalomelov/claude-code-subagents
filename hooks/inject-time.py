@@ -7,9 +7,9 @@ import datetime
 input_data = json.load(sys.stdin)
 prompt = input_data.get("prompt", "")
 
-# Add current time to context
-current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S %Z")
-context = f"Current time: {current_time}"
+# Add current date and time to context
+now = datetime.datetime.now()
+context = f"Current time: {now:%H:%M:%S, %A, %B %d, %Y} (Week: Monday-Sunday)"
 
 # Output the context to be injected
 print(context)
