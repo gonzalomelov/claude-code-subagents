@@ -1,5 +1,11 @@
 Create a GitHub pull request for: $ARGUMENTS
 
+First, check existing PRs to match the repository's style:
+- Run `gh pr list --limit 3` to see recent PRs
+- Run `gh pr view` on them to examine their format
+- Analyze their structure, conventions, and patterns
+- Follow the same style for consistency
+
 Follow this structure:
 - Summary of changes (what was done)
 - Implementation approach (how it was done)
