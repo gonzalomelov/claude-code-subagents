@@ -41,17 +41,18 @@ sync_component() {
   # Create destination if needed
   mkdir -p "$dst"
   
-  # 1) DRIFT CHECK: if anything would flow from DST -> SRC, warn but continue
+  # 1) SAFETY CHECK: Abort if destination has files that would be deleted
   local drift
-  drift="$("$RSYNC" -ain --delete --itemize-changes --out-format='%i %n' \
-    "${EXCLUDES[@]}" "$dst"/ "$src"/ 2>/dev/null || true)"
+  drift="$("$RSYNC" -ain --delete --itemize-changes \
+    "${EXCLUDES[@]}" "$src"/ "$dst"/ 2>/dev/null | grep '^\*deleting' || true)"
   
   if [[ -n "$drift" ]]; then
-    echo "⚠️  Warning: $component has local changes in destination that will be overwritten:"
-    echo "$drift" | head -5
-    read -p "  Continue? (y/N): " -n 1 -r
-    echo
-    [[ $REPLY =~ ^[Yy]$ ]] || { echo "  Skipped $component"; return 0; }
+    echo "❌ Error: $component directory has local files that would be deleted or overwritten:"
+    echo "$drift" | head -10
+    echo ""
+    echo "Please backup or remove these files before running install.sh"
+    echo "Or manually merge changes from: $src"
+    exit 1
   fi
   
   # 2) SAFE SYNC: SRC -> DST (mirror)
