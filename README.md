@@ -48,6 +48,13 @@ The script uses `rsync` to:
 
 - `inject-time.py` - Injects current time into prompts
 
+### Scripts
+
+- `conversation-jsonl-to-csv/` - Convert Claude Code conversation files (80-97% size reduction)
+  - `jsonl-to-csv.sh` - Core conversion script
+  - `watch-and-convert.sh` - Real-time file watcher
+  - `batch-convert-all.sh` - Bulk processor
+
 ## ⚙️ Configuration
 
 After syncing, configure hooks in Claude Code settings:
