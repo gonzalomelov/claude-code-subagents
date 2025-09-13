@@ -57,6 +57,19 @@ git add .  # Stage changes first
 # Then invoke doc-reviewer agent
 ```
 
+### Conversation File Conversion
+Convert Claude Code conversation files from JSONL to compact CSV format (80-97% size reduction):
+```bash
+# Convert a single file
+scripts/conversation-jsonl-to-csv/jsonl-to-csv.sh input.jsonl
+
+# Watch directory and auto-convert new files
+scripts/conversation-jsonl-to-csv/watch-and-convert.sh ~/Claude/conversations
+
+# Batch convert all JSONL files in a directory tree
+scripts/conversation-jsonl-to-csv/batch-convert-all.sh ~/Claude/conversations
+```
+
 ## Agent Workflow
 
 ### Doc-Reviewer Agent
