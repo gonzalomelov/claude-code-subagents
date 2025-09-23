@@ -1,19 +1,20 @@
 # JSONL to CSV Conversion Tools
 
-This project contains scripts to convert Claude Code conversation files from JSONL format to compressed CSV format, reducing file sizes by 80-97%.
+This project contains scripts to convert Claude Code conversation files from JSONL format to compressed CSV format with smart trimming, reducing file sizes by 80-97%.
 
 ## Scripts
 
-### jsonl-to-csv.sh
-Core conversion script that transforms JSONL conversation files to compact CSV format.
+### jsonl-to-csv.py
+Core conversion script that transforms JSONL conversation files to compact CSV format with smart trimming.
 
 **Usage:**
 ```bash
-./jsonl-to-csv.sh /path/to/input.jsonl [/path/to/output.csv]
+python3 jsonl-to-csv.py /path/to/input.jsonl [/path/to/output.csv]
 ```
 
 **Features:**
-- Extracts type, timestamp, and truncated description (250 chars)
+- Smart trimming: Read file responses → 150 chars, other content → 500 chars
+- Tracks multiple sequential Read tool calls accurately
 - Handles various content structures (string, array, tool results)
 - Removes metadata to minimize file size
 - Typical compression: 80-97% reduction
@@ -64,7 +65,7 @@ project-folder/
 
 1. **Convert single file:**
    ```bash
-   ./jsonl-to-csv.sh conversation.jsonl
+   python3 jsonl-to-csv.py conversation.jsonl
    ```
 
 2. **Watch folder for changes:**
@@ -79,5 +80,7 @@ project-folder/
 
 ## Notes
 - CSV files retain essential conversation data while removing verbose metadata
+- Read file responses are intelligently trimmed to 150 chars for optimal compression
+- Other content is trimmed to 500 chars to preserve context
 - Original JSONL files are preserved
 - Scripts handle various Claude Code message formats automatically

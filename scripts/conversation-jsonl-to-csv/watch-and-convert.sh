@@ -6,7 +6,7 @@
 WATCH_DIR="${1:-.}"  # Directory to watch (default: current directory)
 CHECK_INTERVAL=2      # Check for changes every 2 seconds
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONVERTER_SCRIPT="$SCRIPT_DIR/jsonl-to-csv.sh"
+CONVERTER_SCRIPT="$SCRIPT_DIR/jsonl-to-csv.py"
 
 # Colors for output
 RED='\033[0;31m'
@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 
 # Check if converter script exists
 if [ ! -f "$CONVERTER_SCRIPT" ]; then
-    echo -e "${RED}Error: jsonl-to-csv.sh not found at $CONVERTER_SCRIPT${NC}"
+    echo -e "${RED}Error: jsonl-to-csv.py not found at $CONVERTER_SCRIPT${NC}"
     exit 1
 fi
 
@@ -70,8 +70,8 @@ convert_file() {
     echo -e "${YELLOW}🔄 Converting: $basename${NC}"
     echo -e "${BLUE}   → Output: csv-minified/${file_name}.csv${NC}"
     
-    # Run the converter script with explicit output path
-    if "$CONVERTER_SCRIPT" "$file" "$output_file" 2>&1 | sed 's/^/   /'; then
+    # Run the converter script with Python and explicit output path
+    if python3 "$CONVERTER_SCRIPT" "$file" "$output_file" 2>&1 | sed 's/^/   /'; then
         echo -e "${GREEN}   ✅ Successfully converted $basename${NC}"
     else
         echo -e "${RED}   ❌ Failed to convert $basename${NC}"

@@ -58,10 +58,10 @@ git add .  # Stage changes first
 ```
 
 ### Conversation File Conversion
-Convert Claude Code conversation files from JSONL to compact CSV format (80-97% size reduction):
+Convert Claude Code conversation files from JSONL to compact CSV format with smart trimming (80-97% size reduction):
 ```bash
-# Convert a single file
-scripts/conversation-jsonl-to-csv/jsonl-to-csv.sh input.jsonl
+# Convert a single file (smart trimming: Read responses → 150 chars, others → 500 chars)
+python3 scripts/conversation-jsonl-to-csv/jsonl-to-csv.py input.jsonl
 
 # Watch directory and auto-convert new files
 scripts/conversation-jsonl-to-csv/watch-and-convert.sh ~/Claude/conversations

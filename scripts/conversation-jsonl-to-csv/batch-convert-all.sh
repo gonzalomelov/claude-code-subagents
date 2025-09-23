@@ -4,7 +4,7 @@
 
 BASE_DIR="${1:-$HOME/.claude/projects}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONVERTER_SCRIPT="$SCRIPT_DIR/jsonl-to-csv.sh"
+CONVERTER_SCRIPT="$SCRIPT_DIR/jsonl-to-csv.py"
 
 # Colors for output
 RED='\033[0;31m'
@@ -29,7 +29,7 @@ echo ""
 
 # Check if converter script exists
 if [ ! -f "$CONVERTER_SCRIPT" ]; then
-    echo -e "${RED}Error: jsonl-to-csv.sh not found at $CONVERTER_SCRIPT${NC}"
+    echo -e "${RED}Error: jsonl-to-csv.py not found at $CONVERTER_SCRIPT${NC}"
     exit 1
 fi
 
@@ -103,8 +103,8 @@ process_directory() {
         # Get original file size
         local original_size=$(get_file_size "$jsonl_file")
         
-        # Run conversion
-        if "$CONVERTER_SCRIPT" "$jsonl_file" "$csv_file" >/dev/null 2>&1; then
+        # Run conversion with Python
+        if python3 "$CONVERTER_SCRIPT" "$jsonl_file" "$csv_file" >/dev/null 2>&1; then
             local compressed_size=$(get_file_size "$csv_file")
             local reduction=$(( (original_size - compressed_size) * 100 / original_size ))
             

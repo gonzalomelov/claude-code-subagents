@@ -51,7 +51,7 @@ The script uses `rsync` to:
 ### Scripts
 
 - `conversation-jsonl-to-csv/` - Convert Claude Code conversation files (80-97% size reduction)
-  - `jsonl-to-csv.sh` - Core conversion script
+  - `jsonl-to-csv.py` - Core conversion script with smart trimming
   - `watch-and-convert.sh` - Real-time file watcher
   - `batch-convert-all.sh` - Bulk processor
 
