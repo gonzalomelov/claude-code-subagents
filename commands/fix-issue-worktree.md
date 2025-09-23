@@ -10,7 +10,7 @@ Steps:
 
 1. Get issue details and show the title
    gh issue view $ARGUMENTS --json number,title,body
-2. Generate branch name and worktree folder name from issue number and title
+2. Generate branch name from issue number and title. Generate worktree folder name by adding repo name as prefix to the branch name
 3. Create worktree using the defined names
    git worktree add "../${WORKTREE_FOLDER_NAME}" -b "${BRANCH}"
 4. Navigate to and run Claude in the worktree. This background job will take time to finish. If timeouts happen, just sleep for a bit and check BashOutput until finished. DO NOT run claude more than once
