@@ -1,3 +1,9 @@
+---
+description: "Create a GitHub issue following repository conventions"
+argument-hint: "<issue description>"
+allowed-tools: ["Bash"]
+---
+
 Create a GitHub issue for: $ARGUMENTS
 
 First, check existing issues to match the repository's style:

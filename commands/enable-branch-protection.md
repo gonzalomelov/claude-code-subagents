@@ -1,3 +1,9 @@
+---
+description: "Re-enable branch protection rules after maintenance"
+argument-hint: "<owner/repo> <branch>"
+allowed-tools: ["Bash"]
+---
+
 Re-enable branch protection for: $ARGUMENTS
 
 ## Usage

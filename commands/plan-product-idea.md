@@ -1,3 +1,9 @@
+---
+description: "Explore and shape a product idea using problem-focused approach"
+argument-hint: "<product idea or concept>"
+allowed-tools: ["Write", "WebFetch", "WebSearch"]
+---
+
 Help me explore and shape a product idea: $ARGUMENTS.
 
 Follow these steps inspired by *David Pereira's Untrapping Product Teams*:

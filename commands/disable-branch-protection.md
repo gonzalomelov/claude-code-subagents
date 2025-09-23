@@ -1,3 +1,9 @@
+---
+description: "Temporarily disable branch protection rules for repository maintenance"
+argument-hint: "<owner/repo> <branch>"
+allowed-tools: ["Bash"]
+---
+
 Disable branch protection for: $ARGUMENTS
 
 ## Usage

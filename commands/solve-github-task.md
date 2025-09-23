@@ -1,3 +1,9 @@
+---
+description: "Complete a GitHub task from planning to implementation"
+argument-hint: "<issue-number or issue-url>"
+allowed-tools: ["Bash", "Read", "Write", "Edit", "MultiEdit", "Grep", "Glob", "WebFetch", "Task"]
+---
+
 Please analyze and solve the GitHub task: $ARGUMENTS.
 
 Follow these steps:

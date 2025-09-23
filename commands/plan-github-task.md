@@ -1,3 +1,9 @@
+---
+description: "Create a detailed plan for a GitHub task"
+argument-hint: "<issue-number or issue-url>"
+allowed-tools: ["Bash", "Read", "Grep", "Glob", "WebFetch", "Task"]
+---
+
 Please analyze and make a plan for the GitHub task: $ARGUMENTS.
 
 Follow these steps:

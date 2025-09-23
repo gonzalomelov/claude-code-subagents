@@ -1,3 +1,9 @@
+---
+description: "Analyze and fix a GitHub issue with implementation"
+argument-hint: "<issue-number or issue-url>"
+allowed-tools: ["Bash", "Read", "Write", "Edit", "MultiEdit", "Grep", "Glob", "Task"]
+---
+
 Please analyze and fix the GitHub issue: $ARGUMENTS.
 
 Follow these steps:

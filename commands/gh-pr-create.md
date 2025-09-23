@@ -1,3 +1,9 @@
+---
+description: "Create a GitHub PR following repository conventions"
+argument-hint: "<pr description>"
+allowed-tools: ["Bash"]
+---
+
 Create a GitHub pull request for: $ARGUMENTS
 
 First, check existing PRs to match the repository's style:

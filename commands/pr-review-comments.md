@@ -1,3 +1,9 @@
+---
+description: "Fetch and display PR review comments grouped by status"
+argument-hint: "<owner/repo> <pr-number>"
+allowed-tools: ["Bash"]
+---
+
 Get PR review comments (resolved and unresolved) for: $ARGUMENTS
 
 ## Usage

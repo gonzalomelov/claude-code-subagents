@@ -1,3 +1,9 @@
+---
+description: "Implement a GitHub PR using TDD approach"
+argument-hint: "<pr-number or pr-url>"
+allowed-tools: ["Bash", "Read", "Write", "Edit", "MultiEdit", "Grep", "Glob", "Task"]
+---
+
 Please analyze and solve the GitHub PR: $ARGUMENTS.
 
 Follow these steps:
