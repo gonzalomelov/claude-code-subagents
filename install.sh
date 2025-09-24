@@ -22,7 +22,7 @@ done
 EXCLUDES=(--exclude '.git/' --exclude '.DS_Store' --exclude 'Thumbs.db' --exclude '__pycache__/' --exclude '*.pyc')
 
 # Components to sync
-COMPONENTS=("agents" "commands" "hooks")
+COMPONENTS=("agents" "commands" "hooks" "scripts")
 
 echo "🔄 Syncing Claude Code components"
 echo "  From: $SRC_BASE"
