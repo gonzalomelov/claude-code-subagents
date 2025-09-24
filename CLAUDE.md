@@ -35,6 +35,15 @@ The doc-reviewer agent depends on:
 - Markdownlint config at `~/.claude/agents/doc-reviewer/markdownlint.jsonc`
 - These files need to be installed in the user's Claude directory structure
 
+### Installation
+Use `install.sh` to sync components to `~/.claude/`:
+```bash
+# Install to user's Claude directory (recommended)
+./install.sh ~/.claude
+```
+
+**Note**: The `install.sh` script was created because symlinks from this repository to `~/.claude/` were failing. The script provides reliable file synchronization with safety checks to prevent data loss.
+
 ## Common Commands
 
 ### Running Evaluations
