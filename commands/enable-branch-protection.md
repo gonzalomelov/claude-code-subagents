@@ -47,15 +47,18 @@ if gh api repos/$REPO/branches/$BRANCH/protection --jq . 2>/dev/null; then
 fi
 
 # Enable protection
-echo '{
+cat << 'EOF' | gh api -X PUT repos/$REPO/branches/$BRANCH/protection --input -
+{
   "required_status_checks": null,
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "required_approving_review_count": 1,
-    "dismiss_stale_reviews": false
+    "dismiss_stale_reviews": false,
+    "require_code_owner_reviews": false
   },
   "restrictions": null
-}' | gh api -X PUT repos/$REPO/branches/$BRANCH/protection --input -
+}
+EOF
 
 # Define expected protection state after enabling
 EXPECTED_PROTECTION='{
