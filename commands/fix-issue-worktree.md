@@ -17,5 +17,5 @@ Steps:
    cd "../${WORKTREE_FOLDER_NAME}" && claude --dangerously-skip-permissions -p "I'm working on fixing issue #$ARGUMENTS. Please: 1) Get issue details using 'gh issue view $ARGUMENTS', 2) Analyze the issue and search for relevant files, 3) Think hard and draft a production-grade solution plan, 4) Implement the necessary changes to fix the issue, 5) Write and run tests to verify the fix, 6) Ensure code passes linting and type checking, 7) Create a descriptive commit message referencing issue #$ARGUMENTS, 8) Push and create a PR."
 5. Document the Claude session (after Claude completes)
    ls ~/.claude/projects/*${WORKTREE_FOLDER_NAME}/*.jsonl | head -1 | xargs -I {} python3 ~/.claude/scripts/conversation-jsonl-to-csv/jsonl-to-csv.py {} "../${WORKTREE_FOLDER_NAME}/tmp/${CONVERSATION_ID}.csv"
-6. Commit the work documentation
+6. Commit the work documentation and push
    cd "../${WORKTREE_FOLDER_NAME}" && git add tmp/${CONVERSATION_ID}.csv && git commit -m "Add Claude Code work log for issue #$ARGUMENTS (REMOVE BEFORE MERGE)"
