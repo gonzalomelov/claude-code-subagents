@@ -40,7 +40,7 @@ fi
 echo "Repository: $REPO, Branch: $BRANCH"
 
 # Check if branch is currently unprotected
-if gh api repos/$REPO/branches/$BRANCH/protection --jq . 2>/dev/null; then
+if gh api repos/$REPO/branches/$BRANCH/protection >/dev/null 2>&1; then
   echo "ERROR: Branch protection is already enabled"
   echo "Use /disable-branch-protection first if you want to reset"
   exit 1
