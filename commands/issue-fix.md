@@ -16,6 +16,6 @@ Steps:
 6. Write and run tests to verify the fix
 7. Ensure code passes linting and type checking
 8. Create a descriptive commit message
-9. Push and create a PR
+9. Push changes
 
 Remember to use the GitHub CLI (`gh`) for all GitHub-related tasks.
