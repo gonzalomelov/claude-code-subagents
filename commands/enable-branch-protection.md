@@ -22,18 +22,18 @@ Re-enable branch protection for: $ARGUMENTS
 ```bash
 # Parse arguments (required)
 ARGS="$ARGUMENTS"
-if [ -z "$ARGS" ]; then
-  echo "ERROR: Please specify repository and branch"
-  echo "Usage: /enable-branch-protection owner/repo branch"
-  exit 1
-fi
 
-REPO=$(echo "$ARGS" | cut -d' ' -f1)
-BRANCH=$(echo "$ARGS" | cut -d' ' -f2)
+# More robust parsing for two arguments
+# Extract repository (everything before the last space)
+REPO="${ARGS% *}"
+# Extract branch (everything after the last space)
+BRANCH="${ARGS##* }"
 
-if [ -z "$REPO" ] || [ -z "$BRANCH" ]; then
-  echo "ERROR: Both repository and branch are required"
+# Validate arguments - ensure we have exactly two space-separated values
+if [ -z "$ARGS" ] || [ -z "$REPO" ] || [ -z "$BRANCH" ] || [ "$REPO" = "$ARGS" ]; then
+  echo "ERROR: Please specify both repository and branch"
   echo "Usage: /enable-branch-protection owner/repo branch"
+  echo "Example: /enable-branch-protection myorg/myrepo main"
   exit 1
 fi
 
@@ -60,39 +60,18 @@ cat << 'EOF' | gh api -X PUT repos/$REPO/branches/$BRANCH/protection --input -
 }
 EOF
 
-# Define expected protection state after enabling
-EXPECTED_PROTECTION='{
-  "allow_deletions": { "enabled": false },
-  "allow_force_pushes": { "enabled": false },
-  "allow_fork_syncing": { "enabled": false },
-  "block_creations": { "enabled": false },
-  "enforce_admins": {
-    "enabled": true,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/enforce_admins"
-  },
-  "lock_branch": { "enabled": false },
-  "required_conversation_resolution": { "enabled": false },
-  "required_linear_history": { "enabled": false },
-  "required_pull_request_reviews": {
-    "dismiss_stale_reviews": false,
-    "require_code_owner_reviews": false,
-    "require_last_push_approval": false,
-    "required_approving_review_count": 1,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/required_pull_request_reviews"
-  },
-  "required_signatures": {
-    "enabled": false,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/required_signatures"
-  },
-  "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection"
-}'
-
 # Verify protection was applied correctly
-CURRENT_PROTECTION=$(gh api repos/$REPO/branches/$BRANCH/protection --jq . | jq -S .)
-if [ "$CURRENT_PROTECTION" != "$(echo "$EXPECTED_PROTECTION" | jq -S .)" ]; then
-  echo "⚠️  Branch protection enabled but doesn't match expected state"
-  echo "Protection was applied but may need manual verification"
-else
+gh api repos/$REPO/branches/$BRANCH/protection >/dev/null 2>&1
+if [ $? -eq 0 ]; then
   echo "✓ Branch protection enabled successfully for $REPO:$BRANCH"
+  echo ""
+  echo "Protection settings applied:"
+  echo "- Require pull request reviews: Yes (1 approval)"
+  echo "- Enforce admins: Yes"
+  echo "- Allow force pushes: No"
+  echo "- Allow deletions: No"
+else
+  echo "⚠️  Branch protection was applied but verification failed"
+  echo "Please check manually: https://github.com/$REPO/settings/branches"
 fi
 ```

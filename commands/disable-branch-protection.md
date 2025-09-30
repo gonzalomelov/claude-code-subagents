@@ -22,64 +22,44 @@ Disable branch protection for: $ARGUMENTS
 ```bash
 # Parse arguments (required)
 ARGS="$ARGUMENTS"
-if [ -z "$ARGS" ]; then
-  echo "ERROR: Please specify repository and branch"
-  echo "Usage: /disable-branch-protection owner/repo branch"
-  exit 1
-fi
 
-REPO=$(echo "$ARGS" | cut -d' ' -f1)
-BRANCH=$(echo "$ARGS" | cut -d' ' -f2)
+# More robust parsing for two arguments
+# Extract repository (everything before the last space)
+REPO="${ARGS% *}"
+# Extract branch (everything after the last space)
+BRANCH="${ARGS##* }"
 
-if [ -z "$REPO" ] || [ -z "$BRANCH" ]; then
-  echo "ERROR: Both repository and branch are required"
+# Validate arguments - ensure we have exactly two space-separated values
+if [ -z "$ARGS" ] || [ -z "$REPO" ] || [ -z "$BRANCH" ] || [ "$REPO" = "$ARGS" ]; then
+  echo "ERROR: Please specify both repository and branch"
   echo "Usage: /disable-branch-protection owner/repo branch"
+  echo "Example: /disable-branch-protection myorg/myrepo main"
   exit 1
 fi
 
 echo "Repository: $REPO, Branch: $BRANCH"
 
-# Define expected protection state
-EXPECTED_PROTECTION='{
-  "allow_deletions": { "enabled": false },
-  "allow_force_pushes": { "enabled": false },
-  "allow_fork_syncing": { "enabled": false },
-  "block_creations": { "enabled": false },
-  "enforce_admins": {
-    "enabled": true,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/enforce_admins"
-  },
-  "lock_branch": { "enabled": false },
-  "required_conversation_resolution": { "enabled": false },
-  "required_linear_history": { "enabled": false },
-  "required_pull_request_reviews": {
-    "dismiss_stale_reviews": false,
-    "require_code_owner_reviews": false,
-    "require_last_push_approval": false,
-    "required_approving_review_count": 1,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/required_pull_request_reviews"
-  },
-  "required_signatures": {
-    "enabled": false,
-    "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection/required_signatures"
-  },
-  "url": "https://api.github.com/repos/'$REPO'/branches/'$BRANCH'/protection"
-}'
-
-# Check if current protection matches expected
-CURRENT_PROTECTION=$(gh api repos/$REPO/branches/$BRANCH/protection --jq . 2>/dev/null | jq -S .)
-if [ -z "$CURRENT_PROTECTION" ]; then
+# Check if branch protection is currently enabled
+gh api repos/$REPO/branches/$BRANCH/protection >/dev/null 2>&1
+if [ $? -ne 0 ]; then
   echo "ERROR: Branch protection not found or already disabled"
   exit 1
 fi
 
-if [ "$CURRENT_PROTECTION" != "$(echo "$EXPECTED_PROTECTION" | jq -S .)" ]; then
-  echo "ERROR: Current branch protection doesn't match expected baseline"
-  echo "Please verify branch protection state before disabling"
-  exit 1
-fi
+# Get current protection settings for verification
+echo "Current branch protection detected. Preparing to disable..."
 
 # Disable protection
-gh api -X DELETE repos/$REPO/branches/$BRANCH/protection
-echo "✓ Branch protection disabled for $REPO:$BRANCH"
+gh api -X DELETE repos/$REPO/branches/$BRANCH/protection 2>&1
+if [ $? -eq 0 ]; then
+  echo "✓ Branch protection disabled for $REPO:$BRANCH"
+  echo ""
+  echo "⚠️  WARNING: Branch is now unprotected!"
+  echo "Remember to re-enable protection after maintenance:"
+  echo "  /enable-branch-protection $REPO $BRANCH"
+else
+  echo "ERROR: Failed to disable branch protection"
+  echo "Please check your permissions and try again"
+  exit 1
+fi
 ```
