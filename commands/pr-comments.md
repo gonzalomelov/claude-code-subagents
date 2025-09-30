@@ -6,18 +6,14 @@ allowed-tools: ["Bash"]
 
 Get PR review comments (resolved and unresolved) for: $ARGUMENTS
 
-## Usage
-
-- `/pr-review-comments owner/repo pr-number`
-
-## Steps
+Steps:
 
 1. Parse repository owner, name, and PR number from arguments
 2. Fetch all review threads from the PR using GitHub GraphQL API
 3. Group comments by resolved status
 4. Display both resolved and unresolved comments with details
 
-## Commands
+Commands:
 
 ```bash
 # Parse arguments (required)

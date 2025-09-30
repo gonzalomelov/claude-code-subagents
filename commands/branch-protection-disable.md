@@ -6,18 +6,14 @@ allowed-tools: ["Bash"]
 
 Disable branch protection for: $ARGUMENTS
 
-## Usage
-
-- `/disable-branch-protection owner/repo branch`
-
-## Steps
+Steps:
 
 1. Check current protection matches expected baseline
 2. If matches, remove all branch protection rules from branch
 3. If doesn't match, fail with error message
 4. Show confirmation that protection is disabled
 
-## Commands
+Commands:
 
 ```bash
 # Parse arguments (required)

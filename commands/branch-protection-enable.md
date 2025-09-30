@@ -6,18 +6,14 @@ allowed-tools: ["Bash"]
 
 Re-enable branch protection for: $ARGUMENTS
 
-## Usage
-
-- `/enable-branch-protection owner/repo branch`
-
-## Steps
+Steps:
 
 1. Check if branch protection is currently disabled
 2. If disabled, apply standard branch protection rules to branch
 3. If already protected, fail with error message
 4. Verify protection matches expected state after enabling
 
-## Commands
+Commands:
 
 ```bash
 # Parse arguments (required)

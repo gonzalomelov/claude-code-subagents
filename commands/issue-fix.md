@@ -6,7 +6,7 @@ allowed-tools: ["Bash", "Read", "Write", "Edit", "MultiEdit", "Grep", "Glob", "T
 
 Please analyze and fix the GitHub issue: $ARGUMENTS.
 
-Follow these steps:
+Steps:
 
 1. Use `gh issue view` to get the issue details
 2. Understand the problem described in the issue
