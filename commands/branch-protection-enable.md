@@ -45,7 +45,10 @@ fi
 # Enable protection
 cat << 'EOF' | gh api -X PUT repos/$REPO/branches/$BRANCH/protection --input -
 {
-  "required_status_checks": null,
+  "required_status_checks": {
+    "strict": false,
+    "contexts": ["lint"]
+  },
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "required_approving_review_count": 1,
@@ -62,6 +65,7 @@ if [ $? -eq 0 ]; then
   echo "✓ Branch protection enabled successfully for $REPO:$BRANCH"
   echo ""
   echo "Protection settings applied:"
+  echo "- Required status checks: lint"
   echo "- Require pull request reviews: Yes (1 approval)"
   echo "- Enforce admins: Yes"
   echo "- Allow force pushes: No"
