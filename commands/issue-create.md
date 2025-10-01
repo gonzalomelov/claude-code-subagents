@@ -8,17 +8,18 @@ Create a GitHub issue for: $ARGUMENTS
 
 Steps:
 
-1. Check existing issues to match the repository's style
-   - Run `gh issue list --limit 3` to see recent issues
-   - Analyze their format, structure, and conventions
-   - Follow the same patterns for consistency
+1. Check for issue template
+   - Look for `.github/ISSUE_TEMPLATE/` directory
+   - If template exists, follow its structure exactly
+   - If no template, check existing issues: `gh issue list --limit 3`
 
-2. Follow this structure:
-   - Problem/goal in plain language
-   - Context/background
-   - Scope & constraints
-   - Acceptance criteria (testable bullets)
-   - Priority/labels
+2. If repository has template, follow it. Otherwise use this structure:
+   - ### Summary (What & Why)
+     Problem + motivation in 3-5 lines
+   - ### Acceptance Criteria
+     Pass/fail checkboxes or bullets
+   - ### Scope/Notes
+     Out of scope, constraints, assumptions
 
 3. DO NOT include (these belong in PRs):
    - Implementation details or solution approach
@@ -27,5 +28,7 @@ Steps:
    - Screenshots, UI changes or evaluations
 
 4. Use `gh issue create` with appropriate title and body
+   - Match template title format if it exists (e.g., "[Issue]: " prefix)
+   - Keep acceptance criteria specific and testable
 
 Rule of Thumb: Issue = WHAT & WHY (not HOW)
