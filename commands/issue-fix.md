@@ -8,8 +8,8 @@ Please analyze and fix the GitHub issue: $ARGUMENTS.
 
 Steps:
 
-1. Use `gh issue view` to get the issue details
-2. Understand the problem described in the issue
+1. Use `gh issue view` with `--comments` to get the issue details and all comments
+2. Understand the problem described in the issue and consider all discussion in comments
 3. Search the codebase for relevant files
 4. Think hard and draft a production-grade solution plan
 5. Implement the necessary changes to fix the issue
