@@ -9,7 +9,7 @@ Create a GitHub issue for: $ARGUMENTS
 Steps:
 
 1. Check for issue template
-   - Look for `.github/ISSUE_TEMPLATE/` directory
+   - Use `ls .github/ISSUE_TEMPLATE/` or `find .github/ISSUE_TEMPLATE/ -type f` to check for template files
    - If template exists, follow its structure exactly
    - If no template, check existing issues: `gh issue list --limit 3`
 
