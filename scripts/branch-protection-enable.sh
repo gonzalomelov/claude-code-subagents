@@ -31,7 +31,12 @@ cat << 'EOF' | gh api -X PUT repos/$REPO/branches/$BRANCH/protection --input -
 {
   "required_status_checks": {
     "strict": true,
-    "contexts": ["lint"]
+    "checks": [
+      {"context": "Lint"},
+      {"context": "Type Check"},
+      {"context": "Build"},
+      {"context": "Test"}
+    ]
   },
   "enforce_admins": true,
   "required_pull_request_reviews": {
